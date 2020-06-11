@@ -7,15 +7,15 @@ for a0 in range(t):
     n = int(input().strip())
     largestFact = 0
     i = 2
-    newnumm = n
+    newnum = n
     while (i * i <= n):
-        if (newnumm % i == 0):
-            newnumm = newnumm // i
+        if (newnum % i == 0):
+            newnum = newnum // i
             largestFact = i
         else:
             i += 1
 
-    if (newnumm > largestFact): # the remainder is a prime number
-        largestFact = newnumm
+    if (newnum > largestFact): # the remainder is a prime number
+        largestFact = newnum
     print(largestFact)
 
