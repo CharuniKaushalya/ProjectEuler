@@ -3,22 +3,32 @@
 import sys
 import math
 
-thisdict = {2: 0,3: 0,5: 0,7:0,11:0,13:0,17:0,19:0,23:0,29:0}
+# returns smallest multiple that is evenly divisible by all numbers from 1 - n
+# returns -1 if multiple does not exist
+def findSmallestMultiple(n):
+    for i in range(n, factorial(n) + 1, n):
+        if isMultiple(i, n):
+            return i
+    return -1
+
+# checks every number between 1 and n to see if x is a multiple of every number
+# returns True if x is found to be a multiple of every number, and False if x is
+# found to not be a multiple of any number
+def isMultiple(x, n):
+    for i in range(1, n):
+        if x % i != 0:
+            return False
+    return True
+
+# returns the n factorial, or -1 if it does not exist
+def factorial(n):
+    if n > 1: return n * factorial(n - 1)
+    elif n >= 0: return 1
+    else: return -1
+
 
 
 t = int(input().strip())
 for a0 in range(t):
     n = int(input().strip())
-    for i in range(2,n+1):
-        for k,v in thisdict.items():
-            # print(i,k,v)
-            if(i%k == 0):
-                mat = math.floor(math.log(i, k))
-                # print("got mat", i,k,v,mat)
-                if(mat > v):
-                    thisdict[k] = mat
-    tot = 1
-    for k,v in thisdict.items():
-        if(v != 0):
-            tot *= pow(k,v)
-    print(tot)
+    print(findSmallestMultiple(n))
